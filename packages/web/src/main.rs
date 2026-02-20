@@ -1,7 +1,6 @@
 use dioxus::prelude::*;
 
-use ui::Navbar;
-use views::{Blog, Home};
+use views::{Blog, Home, Navbar};
 
 mod views;
 
@@ -16,7 +15,8 @@ enum Route {
 }
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
-const MAIN_CSS: Asset = asset!("/assets/main.css");
+const MAIN_CSS: Asset = asset!("/assets/styling/main.css");
+const TAILWIND_CSS: Asset = asset!("/assets/styling/tailwind.css");
 
 fn main() {
     dioxus::launch(App);
@@ -30,6 +30,7 @@ fn App() -> Element {
         // Global app resources
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: MAIN_CSS }
+        document::Link { rel: "stylesheet", href: TAILWIND_CSS }
 
         Router::<Route> {}
     }
@@ -41,14 +42,8 @@ fn App() -> Element {
 fn WebNavbar() -> Element {
     rsx! {
         Navbar {
-            Link {
-                to: Route::Home {},
-                "Home"
-            }
-            Link {
-                to: Route::Blog { id: 1 },
-                "Blog"
-            }
+            Link { to: Route::Home {}, "Home" }
+            Link { to: Route::Blog { id: 1 }, "Blog" }
         }
 
         Outlet::<Route> {}

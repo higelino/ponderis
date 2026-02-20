@@ -1,10 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-    "packages/ui",
     "packages/web",
-    "packages/desktop",
-    "packages/mobile",
     "packages/api",
 ]
 
@@ -12,5 +9,4 @@ members = [
 dioxus = { version = "0.7.1" }
 
 # workspace
-ui = { path = "packages/ui" }
 api = { path = "packages/api" }
