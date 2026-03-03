@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 
-use views::{Blog, Home, Navbar};
+use views::{Basket, Blog, Home, Navbar};
 
 mod views;
 
@@ -10,6 +10,8 @@ enum Route {
     #[layout(WebNavbar)]
     #[route("/")]
     Home {},
+    #[route("/basket/:id")]
+    Basket { id: i32 },
     #[route("/blog/:id")]
     Blog { id: i32 },
 }
@@ -29,8 +31,10 @@ fn App() -> Element {
     rsx! {
         // Global app resources
         document::Link { rel: "icon" }
-        document::Link { rel: "stylesheet" }
+        //document::Link { rel: "stylesheet" }
         document::Link { rel: "stylesheet", href: TAILWIND_CSS }
+
+        //document::Script { src: AGGRID_JS }
 
         Router::<Route> {}
     }
@@ -42,8 +46,35 @@ fn App() -> Element {
 fn WebNavbar() -> Element {
     rsx! {
         Navbar {
-            Link { to: Route::Home {}, "Home" }
-            Link { to: Route::Blog { id: 1 }, "Blog" }
+            div { class: "flex-none",
+                ul { class: "menu menu-horizontal px-1",
+                    li {
+                        Link { to: Route::Home {}, "Home" }
+                    }
+                    li {
+                        Link { to: Route::Basket { id: 1 }, "Basket" }
+                    }
+                    li {
+                        Link { to: Route::Blog { id: 1 }, "Blog" }
+                    }
+                    li {
+                        a { "Link" }
+                    }
+                    li {
+                        details {
+                            summary { "Parent" }
+                            ul { class: "bg-base-100 rounded-t-none p-2",
+                                li {
+                                    a { "Link 1" }
+                                }
+                                li {
+                                    a { "Link 2" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         Outlet::<Route> {}

@@ -1,14 +1,18 @@
 [package]
 name = "web"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 dioxus = { workspace = true, features = ["router", "fullstack"] }
 api = { workspace = true }
 daisy_rsx = "0.1.54"
+web-sys = { version="0.3.91", features = ["HtmlElement"] , optional = true }
+serde_json = "1.0.149"
+wasm-bindgen = { version = "0.2.114", optional = true  }
+serde-wasm-bindgen = {version = "0.6.5", optional = true}
 
 [features]
 default = []
-web = ["dioxus/web"]
+web = ["dioxus/web", "dep:web-sys", "dep:wasm-bindgen", "dep:serde-wasm-bindgen"]
 server = ["dioxus/server", "api/server"]

@@ -13,5 +13,8 @@
     "@tailwindcss/cli": "^4.1.18",
     "daisyui": "^5.5.18",
     "tailwindcss": "^4.1.18"
+  },
+  "dependencies": {
+    "ag-grid-community": "^35.1.0"
   }
 }

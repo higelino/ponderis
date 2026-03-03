@@ -1,3 +1,4 @@
+use daisy_rsx::{Button, ButtonScheme, ButtonShape, ButtonType};
 use dioxus::prelude::*;
 
 const HERO_CSS: Asset = asset!("/assets/styling/hero.css");
@@ -17,8 +18,9 @@ pub fn Hero() -> Element {
                     h1 { class: "text-5xl font-bold", "Ponderis" }
                     p { class: "py-6", "Build cool things with Dioxus and DaisyUI!" }
                     div { class: "flex flex-col gap-2",
-                        a {
-                            class: "btn btn-primary",
+                        Button {
+                            button_type: ButtonType::Link,
+                            button_scheme: ButtonScheme::Neutral,
                             href: "https://dioxuslabs.com/learn/0.7/",
                             "📚 Learn Dioxus"
                         }
